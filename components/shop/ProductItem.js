@@ -1,22 +1,24 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, Button } from 'react-native'
+import { StyleSheet, Text, View, Image, Button , TouchableOpacity} from 'react-native'
 import Colors from '../../constants/Colors'
 
 const ProductItem = (props) => {
     return (
-        <View style={styles.product}>
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{uri: props.image}} />
+        <TouchableOpacity activeOpacity={0.8} onPress={props.onViewDetails}> 
+            <View style={styles.product}>
+                <View style={styles.imageContainer}>
+                    <Image style={styles.image} source={{uri: props.image}} />
+                </View>
+                <View style={styles.detail}>
+                    <Text style={styles.title}>{props.title}</Text>
+                    <Text style={styles.price}>${props.price.toFixed(2)}</Text>
+                </View>
+                <View style={styles.action}>
+                    <Button title='View Details' color={Colors.primary} onPress={props.onViewDetails}/>
+                    <Button title='To Cart' color={Colors.primary} onPress={props.onAddToCart}/>
+                </View>
             </View>
-            <View style={styles.detail}>
-                <Text style={styles.title}>{props.title}</Text>
-                <Text style={styles.price}>${props.price.toFixed(2)}</Text>
-            </View>
-            <View style={styles.action}>
-                <Button title='View Details' color={Colors.primary} onPress={props.onViewDetails}/>
-                <Button title='To Cart' color={Colors.primary} onPress={props.onAddToCart}/>
-            </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -31,7 +33,6 @@ const styles = StyleSheet.create({
         elevation: 6,
         height: 300,
         margin: 20,
-        
     },
     image:{
         height: '100%',
@@ -47,11 +48,13 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize: 18,
-        marginVertical: 4
+        marginVertical: 4,
+        fontFamily: 'open-sans-bold'
     },
     price:{
         fontSize: 14,
-        color: '#888'
+        color: '#888',
+        fontFamily: 'open-sans'
     },
     detail:{
         alignItems: 'center',
