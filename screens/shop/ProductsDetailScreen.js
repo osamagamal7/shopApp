@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, ScrollView, Image, Button } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import * as cartAction from '../../store/actions/cart'
 
 const ProductsDetailScreen = (props) => {
 
     const productId = props.navigation.getParam('productId')
     const selectedProduct = useSelector(state => state.products.availableProducts.find(prod => prod.id === productId))
    
+    const dispatch = useDispatch()
+
     // useEffect(() =>{
     //     props.navigation.setParams({title: selectedProduct.title})
     // }, [])
@@ -15,7 +18,7 @@ const ProductsDetailScreen = (props) => {
         <ScrollView>
             <Image style={styles.image} source={{uri: selectedProduct.imageUrl}} />
             <View style={styles.actions}>
-                <Button title='Add To Cart' onPress={() => {}}/>
+                <Button title='Add To Cart' onPress={() => { dispatch(cartAction.addToCart(selectedProduct)) }}/>
             </View>
             <Text style={styles.price}>${selectedProduct.price.toFixed(2)}</Text>
             <Text style={styles.description}>{selectedProduct.description}</Text>
