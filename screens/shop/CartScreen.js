@@ -1,10 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, FlatList } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Colors from '../../constants/Colors'
 import CartItem from '../../components/shop/CartItem'
+import * as cartAction from '../../store/actions/cart'
 
-const product = () => {
+const cartScreen = () => {
+
     const sum = useSelector(state => state.cart.totalAmount)
     const cartItems = useSelector(state => {
         // getting the items obj (cart) and store 'em in an array
@@ -18,8 +20,9 @@ const product = () => {
                 sum: state.cart.items[key].sum
             })
         }
-        return transformedItems
+        return transformedItems.sort((a, b) => a.itemId > b.itemId? 1 : -1)
     })
+    const dispatch = useDispatch()
     return (
         <View style={styles.screen}>
             <View style={styles.summary}>
@@ -32,7 +35,7 @@ const product = () => {
                 <FlatList data={cartItems} keyExtractor={item => item.itemId} 
                 renderItem={(itemData) =>(
                     <CartItem quantity={itemData.item.quantity} title={itemData.item.productTitle} 
-                        amount={itemData.item.sum} onRemove={() => {}}
+                        amount={itemData.item.sum} onRemove={() => {dispatch(cartAction.removeFromCart(itemData.item.itemId))}}
                     />
                 )}
                 />
@@ -40,7 +43,7 @@ const product = () => {
     )
 }
 
-export default product
+export default cartScreen
 
 const styles = StyleSheet.create({
     screen:{
