@@ -38,7 +38,6 @@ const cartReducer = (state = initialState, action) =>{
 
         case REMOVE_FROM_CART:
             const selectedCartItem = state.items[action.prodId]  //every obj
-            console.log(action.prodId)
             const currentQnt = selectedCartItem.quantity
             let updatedProductItems;
             if(currentQnt > 1){

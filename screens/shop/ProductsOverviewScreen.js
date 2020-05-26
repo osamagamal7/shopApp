@@ -32,9 +32,14 @@ ProductsOverviewScreen.navigationOptions = ({navigation}) => {
                 <Item title='cart' iconName={Platform.OS === 'android'? 'md-cart' : 'ios-cart'} 
                     onPress={() => {navigation.navigate('Cart')}} />
             </HeaderButtons>
-        }
+        },
+        headerLeft: () => {
+            return <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item title='menu' iconName={Platform.OS === 'android'? 'md-menu' : 'ios-menu'} 
+                    onPress={() => {navigation.toggleDrawer()}} />
+            </HeaderButtons>
+        },
     }
-        
     
 }
 
