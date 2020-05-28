@@ -4,7 +4,7 @@ import PRODUCTS from '../../data/dummy-data'
 const initialState = {
     availableProducts: PRODUCTS,                    //all the prdcts
     userProducts: PRODUCTS.filter(prod =>(
-        prod.ownerID === 'u1'             //the prdcts the user created (we are setting up dummy data rn)
+        prod.ownerId === 'u1'             //the prdcts the user created (we are setting up dummy data rn)
     ))                        
 }
 
