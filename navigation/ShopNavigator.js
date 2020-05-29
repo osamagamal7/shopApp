@@ -10,6 +10,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer'
 import OrderScreen from '../screens/shop/OrderScreen'
 import {Ionicons} from '@expo/vector-icons'
 import UserProductsScreen from '../screens/user/UserProductsScreen';
+import EditProductScreen from '../screens/user/EditProductScreen';
 
 const defaultNavOptions = {
     headerStyle:{
@@ -59,7 +60,8 @@ const OrdersNavigator = createStackNavigator({
         )}
 })
 const AdminNavigator = createStackNavigator({
-    UserProducts: UserProductsScreen
+    UserProducts: UserProductsScreen,
+    EditProducts: EditProductScreen
 }, {
     defaultNavigationOptions: defaultNavOptions,
     navigationOptions:{
