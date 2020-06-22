@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack'
-import {createAppContainer} from 'react-navigation'
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import { Platform } from 'react-native'
 import Colors from '../constants/Colors'
 import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen'
@@ -11,6 +11,7 @@ import OrderScreen from '../screens/shop/OrderScreen'
 import {Ionicons} from '@expo/vector-icons'
 import UserProductsScreen from '../screens/user/UserProductsScreen';
 import EditProductScreen from '../screens/user/EditProductScreen';
+import AuthScreen from '../screens/shop/AuthScreen';
 
 const defaultNavOptions = {
     headerStyle:{
@@ -82,7 +83,7 @@ const ShopNavigator = createDrawerNavigator({
         navigationOptions:{
             drawerIcon: (drawerConfig) => (
             <Ionicons 
-                name={Platform.OS === 'android'? 'md-create' : 'ios-create' }
+                name={ Platform.OS === 'android'? 'md-create' : 'ios-create' }
                 size={23}
                 color={drawerConfig.tintColor} />
             )}
@@ -91,6 +92,11 @@ const ShopNavigator = createDrawerNavigator({
     contentOptions:{
         activeTintColor: Platform.OS === 'android'? 'white' : Colors.primary
     }
+})
+
+const AuthNavigator = createStackNavigator({
+    Auth: AuthScreen,
+
 })
 
 

@@ -37,6 +37,8 @@ const UserProductsScreen = (props) => {
                 <Button title='Delete' onPress={() => deleteHandler(itemData.item.id) } color={Colors.primary} />
              </ProductItem>
         )} />
+
+
     )
 }
 
